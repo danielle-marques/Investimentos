@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+   android:id="@+id/toolbar_home"
+    android:layout_width="match_parent"
+    android:layout_height="64dp"
+    android:background="#000000"
+    >
+
+    <TextView
+        android:id="@+id/moeda_toolbar_home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:accessibilityHeading="true"
+        android:fontFamily="@font/helvetica"
+        android:padding="8dp"
+        android:text="@string/toolbar_moedas"
+        android:textColor="@color/white"
+        android:textSize="17sp"/>
+
+</androidx.appcompat.widget.Toolbar>
