@@ -36,7 +36,7 @@ object FuncoesUteis {
         } else {
             itemPorcentagem.setTextColor(Color.WHITE)
         }
-        val formatador = DecimalFormat("#.##")
+        val formatador = DecimalFormat("#,##")
         itemPorcentagem.text = formatador.format(moedaModel.porcentagem).toString() + "%"
     }
 

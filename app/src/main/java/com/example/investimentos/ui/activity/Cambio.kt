@@ -1,6 +1,5 @@
 package com.example.investimentos.ui.activity
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -37,14 +36,12 @@ class Cambio : AppCompatActivity() {
 
 
         configuraToolbar()
-        FuncoesUteis.increaseTouch(binding.includeToolbarCambio.imgVoltaHomeToolbar, 150F)
-
+       // FuncoesUteis.increaseTouch(binding.includeToolbarCambio.imgVoltaHomeToolbar, 150F)
 
 
     }
 
 
-    @SuppressLint("SetTextI18n")
     override fun onResume() {
         super.onResume()
         binding.edtQuantidadeMoedasCambio.text?.clear()
@@ -61,7 +58,6 @@ class Cambio : AppCompatActivity() {
     }
 
 
-    @SuppressLint("SetTextI18n")
     private fun recebeMoeda() {
         moedaSelecionada = intent.getSerializableExtra(NOME_MOEDA) as? MoedaModel
         moedaSelecionada?.let { moeda ->
@@ -69,28 +65,33 @@ class Cambio : AppCompatActivity() {
                 FuncoesUteis.buscaValorSimuladoParaModel(moeda)
             }
 
-
             binding.tvNomeMoedaCambio.text =
                 "${moeda.isoMoeda} - ${moeda.moeda}"
             binding.tvPorcentagemMoedaCambio.text =
                 moeda.porcentagem.toString()
             if (moeda.compra == null) {
-                binding.tvCompraMoedaCambio.text = "Compra: R$ 0.00"
+                binding.tvCompraMoedaCambio.text = "Compra: R$ 0,00"
             } else {
                 binding.tvCompraMoedaCambio.text =
-                    "Compra: R$ ${moeda.compra.toString().toBigDecimal().setScale(2, RoundingMode.UP)}"
+                    "Compra: R$ ${
+                        moeda.compra.toString().toBigDecimal().setScale(2, RoundingMode.UP)
+                    }"
             }
             if (moeda.venda == null) {
-                binding.tvVendaMoedaCambio.text = "Venda: R$ 0.00"
+                binding.tvVendaMoedaCambio.text = "Venda: R$ 0,00"
             } else {
                 binding.tvVendaMoedaCambio.text =
-                    "Venda: R$ ${moeda.venda.toString().toBigDecimal().setScale(2, RoundingMode.DOWN)}"
+                    "Venda: R$ ${
+                        moeda.venda.toString().toBigDecimal().setScale(2, RoundingMode.DOWN)
+                    }"
             }
 
             binding.tvValorDaMoedaEmCaixaCambio.text =
                 "${moeda.saldoMoedaEmCaixa} ${moeda.moeda} em caixa"
             binding.tvSaldoDisponivelCambio.text =
-                "Saldo disponível: R$ ${saldoDisponivel.toBigDecimal().setScale(2, RoundingMode.UP)}"
+                "Saldo disponível: R$ ${
+                    saldoDisponivel.toBigDecimal().setScale(2, RoundingMode.UP)
+                }"
 
             FuncoesUteis.incicializarPorcentagemCor(binding.tvPorcentagemMoedaCambio, moeda)
 

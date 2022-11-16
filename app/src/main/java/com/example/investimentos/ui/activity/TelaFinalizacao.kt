@@ -38,7 +38,7 @@ class TelaFinalizacao : AppCompatActivity() {
 
         botaoVoltarTelaHome()
 
-        FuncoesUteis.increaseTouch(binding.includeToolbarFinaliza.imgVoltaCambioToolbar, 150F)
+        //FuncoesUteis.increaseTouch(binding.includeToolbarFinaliza.imgVoltaCambioToolbar, 150F)
     }
 
     private fun botaoVoltarTelaHome() {
@@ -57,7 +57,7 @@ class TelaFinalizacao : AppCompatActivity() {
         supportActionBar?.setDisplayShowTitleEnabled(false)
     }
 
-    @SuppressLint("SetTextI18n")
+
     private fun venderMoeda() {
 
         moedaSelecionada = intent.getSerializableExtra(VENDA_MOEDA) as? MoedaModel
@@ -71,7 +71,7 @@ class TelaFinalizacao : AppCompatActivity() {
         }
     }
 
-    @SuppressLint("SetTextI18n")
+
     private fun comprarMoeda() {
 
         moedaSelecionada = intent.getSerializableExtra(COMPRA_MOEDA) as? MoedaModel

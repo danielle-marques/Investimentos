@@ -21,17 +21,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-    <TextView
-        android:id="@+id/tv_moedas_cambio_toolbar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Câmbio"
-        android:layout_marginLeft="15dp"
-        android:fontFamily="helvetica"
-        android:importantForAccessibility="no"
-        android:textSize="17sp"
-        android:textColor="@color/white"/>
+        app:layout_constraintTop_toTopOf="parent"
+        android:paddingRight="45dp"/>
+
     <TextView
         android:id="@+id/vender_comprar_toolbar_finaliza"
         android:layout_width="wrap_content"

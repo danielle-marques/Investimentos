@@ -9,6 +9,7 @@ class MoedaViewHolder(
     private val binding: ItemMoedaBinding,
     private val quandoClicarNaMoeda: (moedaModel: MoedaModel) -> Unit
 ) : RecyclerView.ViewHolder(binding.root) {
+
     private lateinit var moedaModel: MoedaModel
 
     init {
@@ -26,5 +27,7 @@ class MoedaViewHolder(
         binding.itemPorcentagem.text = moedaModel.porcentagem.toString()
         FuncoesUteis.incicializarPorcentagemCor(binding.itemPorcentagem, moedaModel)
     }
+
+
 
 }
