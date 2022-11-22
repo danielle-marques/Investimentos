@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/toolbar_finaliza"
     android:layout_width="match_parent"
     android:layout_height="64dp"
@@ -15,14 +16,15 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="11dp"
         android:backgroundTint="@color/black"
-        android:contentDescription="Voltar tela Câmbio"
+        android:contentDescription="@string/voltar_tela_c_mbio"
         android:focusable="true"
         android:src="@drawable/ic_arrow_back"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:paddingRight="45dp"/>
+        android:paddingEnd="45dp"
+        android:paddingStart="16dp"/>
 
     <TextView
         android:id="@+id/vender_comprar_toolbar_finaliza"
@@ -32,8 +34,9 @@
         android:fontFamily="helvetica"
         android:padding="8dp"
         android:accessibilityHeading="true"
-        android:text="Vender"
+        android:text="@string/vender"
         android:textColor="@color/white"
-        android:textSize="17sp" />
+        android:textSize="17sp"
+        tools:targetApi="p" />
 
 </androidx.appcompat.widget.Toolbar>

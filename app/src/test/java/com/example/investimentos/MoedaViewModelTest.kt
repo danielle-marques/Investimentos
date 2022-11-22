@@ -5,7 +5,6 @@ import com.example.investimentos.model.MoedaModel
 import com.example.investimentos.model.MoedaViewModel
 import com.example.investimentos.repositories.MoedaRepository
 import io.mockk.coEvery
-import io.mockk.impl.annotations.MockK
 import io.mockk.mockk
 import org.junit.Assert.assertEquals
 import org.junit.Test
@@ -13,13 +12,8 @@ import org.junit.Test
 
 class MoedaViewModelTest : BaseTest() {
 
-    val repositorio = mockk<MoedaRepository>(relaxUnitFun = true)
-    var viewModel: MoedaViewModel = MoedaViewModel(repositorio)
-
-
-    @MockK
-    lateinit var moedaModel: MoedaModel
-
+    private val repositorio = mockk<MoedaRepository>(relaxUnitFun = true)
+    private var viewModel: MoedaViewModel = MoedaViewModel(repositorio)
 
 
     @Test
@@ -30,8 +24,7 @@ class MoedaViewModelTest : BaseTest() {
                 porcentagem = 0.0,
                 compra = 1.0,
                 venda = 2.50,
-                isoMoeda = "USD",
-                saldoMoedaEmCaixa = 2
+                isoMoeda = "USD"
             )
         }
         val listaDeMoedaEsperada = listOfNotNull(
@@ -43,7 +36,8 @@ class MoedaViewModelTest : BaseTest() {
             resultado.currencies.AUD,
             resultado.currencies.JPY,
             resultado.currencies.CNY,
-            resultado.currencies.BTC)
+            resultado.currencies.BTC
+        )
 
         coEvery { repositorio.buscaMoedaRepository() } returns resultado
 

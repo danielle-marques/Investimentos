@@ -41,15 +41,7 @@ class MoedaViewModel(private val moedaRepository: MoedaRepository) : BaseViewMod
 
     }
 
-    fun habilitaBotao(botao: AppCompatButton) {
-        botao.isEnabled = true
-        botao.setBackgroundResource(R.drawable.fundo_botao)
-    }
 
-    fun desabilitaBotao(botao: AppCompatButton) {
-        botao.isEnabled = false
-        botao.setBackgroundResource(R.drawable.fundo_botao_desabilitado)
-    }
 
 
 

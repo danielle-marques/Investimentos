@@ -1,13 +1,14 @@
 package com.example.investimentos.util
 
 import com.example.investimentos.api.MoedasApi
+import com.example.investimentos.extensions.BASE_URL
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class RetrofitUtil {
-    private val BASE_URL = "https://api.hgbrasil.com/"
+
 
     fun initApiServices(): MoedasApi {
 

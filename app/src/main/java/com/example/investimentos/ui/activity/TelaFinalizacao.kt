@@ -1,20 +1,19 @@
 package com.example.investimentos.ui.activity
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
+import com.example.investimentos.R
+import com.example.investimentos.SimulacaoValores.operacaoSimulado
+import com.example.investimentos.SimulacaoValores.toolbarSimulado
+import com.example.investimentos.base.BaseActivity
 import com.example.investimentos.databinding.ActivityTelaFinalizacaoBinding
-import com.example.investimentos.extensions.*
-import com.example.investimentos.model.MainViewModelFactory
+import com.example.investimentos.extensions.MOEDA_SELECIONADA
+import com.example.investimentos.extensions.QUANTIDADE_MOEDA
+import com.example.investimentos.extensions.VALOR_TOTAL
+import com.example.investimentos.extensions.formataMoeda
 import com.example.investimentos.model.MoedaModel
-import com.example.investimentos.model.MoedaViewModel
-import com.example.investimentos.repositories.MoedaRepository
-import com.example.investimentos.util.FuncoesUteis
-import java.math.RoundingMode
 
-class TelaFinalizacao : AppCompatActivity() {
+class TelaFinalizacao : BaseActivity() {
 
     private val binding by lazy {
         ActivityTelaFinalizacaoBinding.inflate(layoutInflater)
@@ -22,24 +21,19 @@ class TelaFinalizacao : AppCompatActivity() {
     }
 
     private var moedaSelecionada: MoedaModel? = null
-    private lateinit var moedaViewModel: MoedaViewModel
+
+    private val operacaoRealizada = StringBuilder()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        moedaViewModel = ViewModelProvider(this, MainViewModelFactory(MoedaRepository()))[MoedaViewModel::class.java]
-
+        binding.includeToolbarFinaliza.imgVoltaCambioToolbar.setOnClickListener { finish() }
         configuraToolbar()
-
-        comprarMoeda()
-
-        venderMoeda()
-
-        botaoVoltarTelaHome()
-
-        //FuncoesUteis.increaseTouch(binding.includeToolbarFinaliza.imgVoltaCambioToolbar, 150F)
+        moedaViewModel()
+        realizaOperacao()
     }
+
 
     private fun botaoVoltarTelaHome() {
         binding.botaoVoltarHome.setOnClickListener {
@@ -50,41 +44,38 @@ class TelaFinalizacao : AppCompatActivity() {
         }
     }
 
-    private fun configuraToolbar() {
-        setSupportActionBar(binding.includeToolbarFinaliza.toolbarFinaliza)
-        binding.includeToolbarFinaliza.imgVoltaCambioToolbar.setOnClickListener { finish() }
-        setSupportActionBar(binding.includeToolbarFinaliza.toolbarFinaliza)
-        supportActionBar?.setDisplayShowTitleEnabled(false)
-    }
 
+    private fun realizaOperacao() {
+        moedaSelecionada = intent.getSerializableExtra(MOEDA_SELECIONADA) as? MoedaModel
+        binding.includeToolbarFinaliza.venderComprarToolbarFinaliza.text = "$toolbarSimulado"
+        val valorTotal = intent.getDoubleExtra(VALOR_TOTAL, 0.0)
+        val quantidadeMoeda = intent.getIntExtra(QUANTIDADE_MOEDA, 0)
+        val operacao = operacaoSimulado
+        val isoMoeda = moedaSelecionada?.isoMoeda
+        val moedaNome = moedaSelecionada?.moeda
+        moedaSelecionada?.let {
+            operacaoRealizada.let {
+                it.append(binding.textoFinalizacao.text)
+                    .append(
+                        getString(R.string.parabens),
+                        operacao,
+                        getString(R.string.espaco),
+                        quantidadeMoeda,
+                        getString(R.string.espaco),
+                        isoMoeda,
+                        getString(R.string.hifen),
+                        moedaNome,
+                        getString(R.string.virgula),
+                        getString(R.string.totalizando),
+                        formataMoeda(valorTotal)
+                    )
+                    .toString()
 
-    private fun venderMoeda() {
-
-        moedaSelecionada = intent.getSerializableExtra(VENDA_MOEDA) as? MoedaModel
-        val valorVENDA = intent.getIntExtra(VALOR_VENDA, 0)
-        val valorTotalDaVenda = intent.getDoubleExtra(VALOR_TOTAL_DA_VENDA, 0.0)
-        moedaSelecionada?.let { moeda ->
-            binding.includeToolbarFinaliza.venderComprarToolbarFinaliza.text = "Vender"
-            binding.textoFinalizacao.text = "Parabéns! \n" +
-                    "Você acabou de vender $valorVENDA ${moeda.moeda} - ${moeda.isoMoeda}, totalizando \n" +
-                    "R$ ${valorTotalDaVenda.toBigDecimal().setScale(2, RoundingMode.UP)}"
+                binding.textoFinalizacao.text = it
+            }
+            botaoVoltarTelaHome()
         }
+
+
     }
-
-
-    private fun comprarMoeda() {
-
-        moedaSelecionada = intent.getSerializableExtra(COMPRA_MOEDA) as? MoedaModel
-        val valorCompra = intent.getIntExtra(VALOR_COMPRA, 0)
-        val valorTotalDaCompra = intent.getDoubleExtra(VALOR_TOTAL_DA_COMPRA, 0.0)
-
-        moedaSelecionada?.let { moeda ->
-            binding.includeToolbarFinaliza.venderComprarToolbarFinaliza.text = "Comprar"
-            binding.textoFinalizacao.text = "Parabéns! \n" +
-                    "Você acabou de comprar $valorCompra ${moeda.moeda} - ${moeda.isoMoeda}, totalizando \n" +
-                    "R$ ${valorTotalDaCompra.toBigDecimal().setScale(2, RoundingMode.UP)}"
-        }
-    }
-
-
 }
