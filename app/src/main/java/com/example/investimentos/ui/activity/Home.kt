@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.investimentos.adapter.MoedasAdapter
 import com.example.investimentos.base.BaseActivity
 import com.example.investimentos.databinding.ActivityHomeBinding
+import com.example.investimentos.extensions.MOEDAS
 import com.example.investimentos.extensions.NOME_MOEDA
 
 class Home : BaseActivity() {
@@ -23,13 +24,15 @@ class Home : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        moedaViewModel()
+
 
         configrarRecyclerView()
 
         setupObserver()
 
-        configuraToolbar()
+        configuraToolbar(binding.includeToolbarBase.baseToolbarTv,
+        binding.includeToolbarBase.imgVoltaBase,
+        MOEDAS)
 
     }
 

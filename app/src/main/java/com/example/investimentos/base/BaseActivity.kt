@@ -3,6 +3,7 @@ package com.example.investimentos.base
 import android.os.Build
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +12,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.accessibility.AccessibilityNodeInfoCompat
 import androidx.lifecycle.ViewModelProvider
 import com.example.investimentos.databinding.ActivityBaseBinding
+import com.example.investimentos.extensions.MOEDAS
 import com.example.investimentos.model.MainViewModelFactory
 import com.example.investimentos.model.MoedaViewModel
 import com.example.investimentos.repositories.MoedaRepository
@@ -29,11 +31,10 @@ abstract class BaseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         moedaViewModel()
-        configuraToolbar()
 
     }
 
-    fun moedaViewModel() {
+    protected open fun moedaViewModel() {
         moedaViewModel = ViewModelProvider(
             this,
             MainViewModelFactory(MoedaRepository())
@@ -44,11 +45,17 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
 
-    fun configuraToolbar() {
+    protected open fun configuraToolbar(tvTitulo: TextView, btnVoltar: ImageButton, titulo: String) {
         setSupportActionBar(binding.includeToolbarBase.toolbarBase)
         supportActionBar?.setDisplayShowTitleEnabled(false)
-        binding.includeToolbarBase.imgVoltaBase.setOnClickListener { finish() }
-        setIsHeading(binding.includeToolbarBase.baseToolbarHome)
+        setIsHeading(binding.includeToolbarBase.baseToolbarTv)
+        tvTitulo.text = titulo
+        if (titulo == MOEDAS) {
+            btnVoltar.visibility = View.GONE
+        } else {
+            btnVoltar.visibility = View.VISIBLE
+            btnVoltar.setOnClickListener { finish() }
+        }
     }
 
     private fun setIsHeading(textView: TextView) {

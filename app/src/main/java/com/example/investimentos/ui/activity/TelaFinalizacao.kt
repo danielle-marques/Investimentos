@@ -28,9 +28,14 @@ class TelaFinalizacao : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        binding.includeToolbarFinaliza.imgVoltaCambioToolbar.setOnClickListener { finish() }
-        configuraToolbar()
-        moedaViewModel()
+
+        toolbarSimulado?.let {
+            configuraToolbar(binding.includeToolbarFinaliza.baseToolbarTv,
+                binding.includeToolbarFinaliza.imgVoltaBase,
+                it
+            )
+        }
+
         realizaOperacao()
     }
 
@@ -47,7 +52,7 @@ class TelaFinalizacao : BaseActivity() {
 
     private fun realizaOperacao() {
         moedaSelecionada = intent.getSerializableExtra(MOEDA_SELECIONADA) as? MoedaModel
-        binding.includeToolbarFinaliza.venderComprarToolbarFinaliza.text = "$toolbarSimulado"
+        binding.includeToolbarFinaliza.baseToolbarTv.text = "$toolbarSimulado"
         val valorTotal = intent.getDoubleExtra(VALOR_TOTAL, 0.0)
         val quantidadeMoeda = intent.getIntExtra(QUANTIDADE_MOEDA, 0)
         val operacao = operacaoSimulado

@@ -12,3 +12,6 @@ const val BASE_URL = "https://api.hgbrasil.com/"
 
 const val COMPRAR = "COMPRAR"
 const val VENDER = "VENDER"
+
+const val MOEDAS = "Moedas"
+const val CAMBIO = "Câmbio"

@@ -23,17 +23,18 @@ class Cambio : BaseActivity() {
         ActivityCambioBinding.inflate(layoutInflater)
     }
     private var moedaSelecionada: MoedaModel? = null
-
     private var quantidade = 0
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        binding.includeToolbarCambio.imgVoltaHomeToolbar.setOnClickListener { finish() }
-        moedaViewModel()
-        configuraToolbar()
+
+        configuraToolbar(
+            binding.includeToolbarCambio.baseToolbarTv,
+            binding.includeToolbarCambio.imgVoltaBase,
+            CAMBIO
+        )
         recebeMoedaSelecionada()
 
     }
@@ -56,9 +57,7 @@ class Cambio : BaseActivity() {
 
         if (moeda.compra == null) moeda.compra = 0.0
         if (moeda.venda == null) moeda.venda = 0.0
-
         FuncoesUteis.alteraCorDaPorcentagem(binding.tvPorcentagemMoedaCambio, moeda)
-
         binding.tvNomeMoedaCambio.text = buildString {
             append(
                 moeda.isoMoeda,
@@ -70,18 +69,21 @@ class Cambio : BaseActivity() {
         binding.tvCompraMoedaCambio.text = buildString {
             append(
                 getString(R.string.compra_espaco),
-                formataMoeda(moeda.compra) )
-                   }
+                formataMoeda(moeda.compra)
+            )
+        }
         binding.tvVendaMoedaCambio.text = buildString {
             append(
                 getString(R.string.venda_espaco),
-                formataMoeda(moeda.venda) )
+                formataMoeda(moeda.venda)
+            )
 
         }
         binding.tvSaldoDisponivelCambio.text = buildString {
             append(
                 getString(R.string.saldo_disponivel),
-                formataMoeda(saldoDisponivel))
+                formataMoeda(saldoDisponivel)
+            )
 
         }
         binding.tvValorDaMoedaEmCaixaCambio.text = buildString {
@@ -89,8 +91,8 @@ class Cambio : BaseActivity() {
                 buscaValoresHashmap(moeda),
                 getString(R.string.espaco),
                 moeda.moeda,
-                getString(R.string.em_caixa))
-
+                getString(R.string.em_caixa)
+            )
         }
     }
 
@@ -141,7 +143,6 @@ class Cambio : BaseActivity() {
     }
 
     private fun configuraBotaoComprar(moeda: MoedaModel, quantidade: Int) {
-
         binding.botaoComprarCambio.setOnClickListener {
             moeda.compra?.let { valorCompra ->
                 modificaValoresHashmap(moeda.isoMoeda, COMPRAR, quantidade)
@@ -158,7 +159,6 @@ class Cambio : BaseActivity() {
     }
 
     private fun configuraBotaoVender(moeda: MoedaModel, quantidade: Int) {
-
         binding.botaoVenderCambio.setOnClickListener {
             moeda.venda?.let { valorVenda ->
                 modificaValoresHashmap(moeda.isoMoeda, VENDER, quantidade)
@@ -189,8 +189,6 @@ class Cambio : BaseActivity() {
             startActivity(this)
         }
     }
-
-
 }
 
 

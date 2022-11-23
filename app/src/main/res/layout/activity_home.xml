@@ -7,8 +7,8 @@
     tools:context=".ui.activity.Home">
 
     <include
-        android:id="@+id/include_toolbar_moeda"
-        layout="@layout/toolbar_moedas"
+        android:id="@+id/include_toolbar_base"
+        layout="@layout/toolbar_base"
          />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -22,7 +22,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/include_toolbar_moeda"
+        app:layout_constraintTop_toBottomOf="@id/include_toolbar_base"
         tools:listitem="@layout/item_moeda" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

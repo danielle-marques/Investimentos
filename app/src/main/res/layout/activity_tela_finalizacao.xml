@@ -8,7 +8,7 @@
     android:background="@color/black">
     <include
         android:id="@+id/include_toolbar_finaliza"
-        layout="@layout/toolbar_finaliza"
+        layout="@layout/toolbar_base"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
