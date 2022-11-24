@@ -6,7 +6,7 @@ import com.example.investimentos.util.RetrofitUtil
 class MoedaRepository {
     private val moedaApi = RetrofitUtil().initApiServices()
 
-    suspend fun buscaMoedaRepository() : Endpoint {
+    suspend fun buscaMoedaRepository(): Endpoint {
         return moedaApi.buscaMoedas()
     }
 

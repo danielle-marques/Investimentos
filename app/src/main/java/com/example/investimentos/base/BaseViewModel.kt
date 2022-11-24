@@ -1,4 +1,4 @@
-package com.example.investimentos.model
+package com.example.investimentos.base
 
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.CoroutineScope

@@ -45,7 +45,11 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
 
-    protected open fun configuraToolbar(tvTitulo: TextView, btnVoltar: ImageButton, titulo: String) {
+    protected open fun configuraToolbar(
+        tvTitulo: TextView,
+        btnVoltar: ImageButton,
+        titulo: String
+    ) {
         setSupportActionBar(binding.includeToolbarBase.toolbarBase)
         supportActionBar?.setDisplayShowTitleEnabled(false)
         setIsHeading(binding.includeToolbarBase.baseToolbarTv)

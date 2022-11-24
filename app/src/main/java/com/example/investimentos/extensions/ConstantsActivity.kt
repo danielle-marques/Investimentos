@@ -15,3 +15,5 @@ const val VENDER = "VENDER"
 
 const val MOEDAS = "Moedas"
 const val CAMBIO = "Câmbio"
+
+const val ERROR = "Não foi possível carregar as informações."

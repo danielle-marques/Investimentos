@@ -1,8 +1,8 @@
 package com.example.investimentos.model
 
-import androidx.appcompat.widget.AppCompatButton
 import androidx.lifecycle.MutableLiveData
-import com.example.investimentos.R
+import com.example.investimentos.base.BaseViewModel
+import com.example.investimentos.extensions.ERROR
 import com.example.investimentos.repositories.MoedaRepository
 import com.example.investimentos.util.FuncoesUteis.mapeiaMoedaParaIso
 import kotlinx.coroutines.launch
@@ -34,15 +34,12 @@ class MoedaViewModel(private val moedaRepository: MoedaRepository) : BaseViewMod
                 listaDeMoedas.postValue(listaNovaMoedas)
 
             } catch (e: Exception) {
-                mensagemDeErro.postValue("Não foi possível carregar as informações.")
+                mensagemDeErro.postValue(ERROR)
 
             }
         }
 
     }
-
-
-
 
 
 }

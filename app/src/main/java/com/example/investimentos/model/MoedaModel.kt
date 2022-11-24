@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 
-data class MoedaModel (
+data class MoedaModel(
 
     var isoMoeda: String = "",
     @SerializedName("name")
@@ -15,4 +15,4 @@ data class MoedaModel (
     var venda: Double? = 00.0,
     @SerializedName("variation")
     var porcentagem: Double? = null
-    ) : Serializable
+) : Serializable

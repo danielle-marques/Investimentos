@@ -24,15 +24,15 @@ class Home : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-
-
         configrarRecyclerView()
 
         setupObserver()
 
-        configuraToolbar(binding.includeToolbarBase.baseToolbarTv,
-        binding.includeToolbarBase.imgVoltaBase,
-        MOEDAS)
+        configuraToolbar(
+            binding.includeToolbarBase.baseToolbarTv,
+            binding.includeToolbarBase.imgVoltaBase,
+            MOEDAS
+        )
 
     }
 

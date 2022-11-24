@@ -22,7 +22,6 @@ class TelaFinalizacao : BaseActivity() {
 
     private var moedaSelecionada: MoedaModel? = null
 
-    private val operacaoRealizada = StringBuilder()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,23 +29,14 @@ class TelaFinalizacao : BaseActivity() {
 
 
         toolbarSimulado?.let {
-            configuraToolbar(binding.includeToolbarFinaliza.baseToolbarTv,
+            configuraToolbar(
+                binding.includeToolbarFinaliza.baseToolbarTv,
                 binding.includeToolbarFinaliza.imgVoltaBase,
                 it
             )
         }
 
         realizaOperacao()
-    }
-
-
-    private fun botaoVoltarTelaHome() {
-        binding.botaoVoltarHome.setOnClickListener {
-            Intent(this, Home::class.java).let {
-                finish()
-                startActivity(it)
-            }
-        }
     }
 
 
@@ -59,28 +49,33 @@ class TelaFinalizacao : BaseActivity() {
         val isoMoeda = moedaSelecionada?.isoMoeda
         val moedaNome = moedaSelecionada?.moeda
         moedaSelecionada?.let {
-            operacaoRealizada.let {
-                it.append(binding.textoFinalizacao.text)
-                    .append(
-                        getString(R.string.parabens),
-                        operacao,
-                        getString(R.string.espaco),
-                        quantidadeMoeda,
-                        getString(R.string.espaco),
-                        isoMoeda,
-                        getString(R.string.hifen),
-                        moedaNome,
-                        getString(R.string.virgula),
-                        getString(R.string.totalizando),
-                        formataMoeda(valorTotal)
-                    )
-                    .toString()
+            binding.textoFinalizacao.text = buildString {
+                append(
+                    getString(R.string.parabens),
+                    operacao,
+                    getString(R.string.espaco),
+                    quantidadeMoeda,
+                    getString(R.string.espaco),
+                    isoMoeda,
+                    getString(R.string.hifen),
+                    moedaNome,
+                    getString(R.string.virgula),
+                    getString(R.string.totalizando),
+                    formataMoeda(valorTotal)
+                )
 
-                binding.textoFinalizacao.text = it
             }
             botaoVoltarTelaHome()
         }
 
+    }
 
+    private fun botaoVoltarTelaHome() {
+        binding.botaoVoltarHome.setOnClickListener {
+            Intent(this, Home::class.java).let {
+                finish()
+                startActivity(it)
+            }
+        }
     }
 }
