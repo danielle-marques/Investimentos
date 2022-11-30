@@ -2,18 +2,14 @@ package com.example.investimentos.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.investimentos.adapter.MoedasAdapter
+import com.example.investimentos.base.BaseActivity
 import com.example.investimentos.databinding.ActivityHomeBinding
+import com.example.investimentos.extensions.MOEDAS
 import com.example.investimentos.extensions.NOME_MOEDA
-import com.example.investimentos.model.MainViewModelFactory
-import com.example.investimentos.model.MoedaViewModel
-import com.example.investimentos.repositories.MoedaRepository
 
-class Home : AppCompatActivity() {
+class Home : BaseActivity() {
 
     private val binding by lazy {
         ActivityHomeBinding.inflate(layoutInflater)
@@ -23,33 +19,22 @@ class Home : AppCompatActivity() {
         MoedasAdapter()
     }
 
-    private lateinit var moedaViewModel: MoedaViewModel
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        setSupportActionBar(binding.includeToolbarMoeda.toolbarHome)
-        moedaViewModel = ViewModelProvider(
-            this,
-            MainViewModelFactory(MoedaRepository())
-        )[MoedaViewModel::class.java]
-        moedaViewModel.mensagemDeErro.observe(this) { mensagem ->
-            Toast.makeText(applicationContext, mensagem, Toast.LENGTH_LONG).show()
-        }
+
         configrarRecyclerView()
 
         setupObserver()
 
-        configuraToolbar()
+        configuraToolbar(
+            binding.includeToolbarBase.baseToolbarTv,
+            binding.includeToolbarBase.imgVoltaBase,
+            MOEDAS
+        )
 
     }
-
-    private fun configuraToolbar() {
-        setSupportActionBar(binding.includeToolbarMoeda.toolbarHome)
-        supportActionBar?.setDisplayShowTitleEnabled(false)
-    }
-
 
     private fun setupObserver() {
         moedaViewModel.listaDeMoedas.observe(this) { moedas ->

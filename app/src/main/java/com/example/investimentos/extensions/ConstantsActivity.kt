@@ -3,10 +3,17 @@ package com.example.investimentos.extensions
 const val NOME_MOEDA = "NOME_MOEDA"
 
 
-const val COMPRA_MOEDA = "COMPRA_MOEDA"
-const val VALOR_COMPRA = "VALOR_COMPRA"
-const val VALOR_TOTAL_DA_COMPRA = "VALOR_TOTAL_DA_COMPRA"
+const val MOEDA_SELECIONADA = "MOEDA_SELECIONADA"
+const val QUANTIDADE_MOEDA = "QUANTIDADE_MOEDA"
+const val VALOR_TOTAL = "VALOR_TOTAL"
 
-const val VENDA_MOEDA = "VENDA_MOEDA"
-const val VALOR_VENDA = "VALOR_VENDA"
-const val VALOR_TOTAL_DA_VENDA = "VALOR_TOTAL_DA_VENDA"
+const val ID_LOGIN_API = "finance?fields=only_results,currencies&key=721c629f"
+const val BASE_URL = "https://api.hgbrasil.com/"
+
+const val COMPRAR = "COMPRAR"
+const val VENDER = "VENDER"
+
+const val MOEDAS = "Moedas"
+const val CAMBIO = "Câmbio"
+
+const val ERROR = "Não foi possível carregar as informações."

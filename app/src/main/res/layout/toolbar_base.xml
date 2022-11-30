@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
-   android:id="@+id/toolbar_home"
+    android:id="@+id/toolbar_base"
     android:layout_width="match_parent"
     android:layout_height="64dp"
     android:background="#000000"
     >
+    <ImageButton
+        android:id="@+id/img_volta_base"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="11dp"
+        android:backgroundTint="@color/black"
+        android:contentDescription="Voltar tela moedas"
 
+        android:src="@drawable/ic_arrow_back"
+
+        android:paddingRight="45dp"/>
     <TextView
-        android:id="@+id/moeda_toolbar_home"
+        android:id="@+id/base_toolbar_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

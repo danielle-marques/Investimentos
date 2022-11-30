@@ -29,6 +29,7 @@ class MoedasAdapter(
         }
     }
 
+
     override fun getItemCount(): Int = listaMoedas.size
 
     fun refresh(newList: List<MoedaModel?>) {
